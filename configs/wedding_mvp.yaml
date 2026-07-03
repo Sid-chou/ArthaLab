@@ -1,0 +1,97 @@
+config_id: wedding_2030_mvp
+version: "1"
+data_path: ../tests/fixtures/market_prices.csv
+analysis_modules: [backtest, rolling]
+report_outputs: [markdown, csv, json]
+
+goal:
+  goal_id: wedding_2030
+  goal_type: wedding
+  name: Wedding Corpus
+  start_date: 2024-01-31
+  target_date: 2030-12-31
+  target_values: [700000, 800000, 900000, 1000000]
+  inflation_rate: 0.06
+  funding_context: Parents will also contribute; objective is risk-adjusted support.
+
+assumptions:
+  assumption_set_id: default
+  inflation_rate: 0.06
+  risk_free_rate: 0.06
+  benchmark_id: nifty_tri
+  return_frequency: monthly
+  random_seed: 42
+  methodology_version: mvp-1
+
+rebalancing:
+  rebalance_policy_id: annual
+  frequency: annual
+  cashflow_rebalance: true
+
+current_holdings:
+  - holding_id: aditya_birla_liquid
+    asset_id: liquid_proxy
+    asset_class_id: liquid_funds
+    instrument_name: Aditya Birla Liquid Fund
+    current_value: 347000
+    allocation_weight: 0.347
+  - holding_id: hdfc_sensex
+    asset_id: equity_proxy
+    asset_class_id: equity
+    instrument_name: HDFC Sensex Index
+    current_value: 279000
+    allocation_weight: 0.279
+  - holding_id: kotak_multicap
+    asset_id: equity_proxy
+    asset_class_id: equity
+    instrument_name: Kotak Multicap
+    current_value: 145000
+    allocation_weight: 0.145
+  - holding_id: quantum_gold
+    asset_id: gold_proxy
+    asset_class_id: gold
+    instrument_name: Quantum Gold
+    current_value: 178000
+    allocation_weight: 0.178
+  - holding_id: hdfc_silver
+    asset_id: silver_proxy
+    asset_class_id: silver
+    instrument_name: HDFC Silver
+    current_value: 52000
+    allocation_weight: 0.052
+
+portfolios:
+  - portfolio_id: version_a
+    name: Version A
+    description: Test original gold and silver hypothesis.
+    target_allocation: {equity: 0.50, gold: 0.30, silver: 0.20}
+    created_from: research_notes
+  - portfolio_id: portfolio_c
+    name: Portfolio C Balanced
+    target_allocation: {equity: 0.55, debt: 0.25, gold: 0.15, silver: 0.05}
+    created_from: research_notes
+  - portfolio_id: portfolio_h
+    name: Portfolio H Professional Consensus
+    target_allocation: {equity: 0.50, debt: 0.30, gold: 0.15, silver: 0.05}
+    created_from: research_notes
+
+cashflows:
+  - cashflow_id: monthly_sip
+    amount: 5000
+    date: 2024-01-31
+    end_date: 2030-12-31
+    frequency: monthly
+    allocation_rule: target
+    source: sip
+  - cashflow_id: year_1_lump_sum
+    amount: 80000
+    date: 2025-01-31
+    frequency: one_time
+    allocation_rule: target
+    source: scholarship
+  - cashflow_id: year_2_lump_sum
+    amount: 80000
+    date: 2026-01-31
+    frequency: one_time
+    allocation_rule: target
+    source: scholarship
