@@ -1,4 +1,4 @@
-# Indian Goal-Based Portfolio Optimizer
+# ArthaLab
 
 > An institutional-style portfolio research and optimization framework for Indian investors.
 
