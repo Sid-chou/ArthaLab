@@ -101,7 +101,7 @@ Detailed documentation can be found in:
 
 - docs/PROJECT_SPEC.md
 - docs/RESEARCH_NOTES.md
-- docs/ARCHITECTURE.md (coming soon)
+- docs/ARCHITECTURE.md 
 
 ---
 ## Development Roadmap
